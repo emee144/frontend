@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Savings Tracker</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: system-ui, -apple-system, sans-serif;
+    background: #130d01;
+    min-height: 100vh;
+    padding: 2rem 1rem;
+    color: white;
+  }
+
+  .app {
+    max-width: 680px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  /* ── Top bar ── */
+  .top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .top-bar h1 {
+    font-size: 22px;
+    font-weight: 600;
+    color: white;
+  }
+
+  .btn-add {
+    background: #1a1a2e;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 18px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    letter-spacing: 0.2px;
+  }
+
+  /* ── Summary cards ── */
+  .summary-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+  }
+
+  .metric {
+    background: #fff;
+    border-radius: 12px;
+    border: 1px solid rgba(0,0,0,0.08);
+    padding: 1rem;
+  }
+
+  .metric-label {
+    font-size: 12px;
+    color: #888;
+    margin-bottom: 6px;
+  }
+
+  .metric-value {
+    font-size: 24px;
+    font-weight: 600;
+    color: #1a1a1a;
+  }
+
+  .metric-sub {
+    font-size: 11px;
+    color: #bbb;
+    margin-top: 3px;
+  }
+
+  /* ── Section title ── */
+  .section-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: white;
+    margin-bottom: .6rem;
+  }
+
+  /* ── Goal cards ── */
+  .goals-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .goal-card {
+    background: #fff;
+    border: 1px solid rgba(0,0,0,0.08);
+    border-radius: 12px;
+    padding: 1rem;
+    border-top-width: 3px;
+  }
+
+  .goal-card.house     { border-top-color: #5B8DEF; }
+  .goal-card.vacation  { border-top-color: #F4A261; }
+  .goal-card.emergency { border-top-color: #2ECC71; }
+  .goal-card.laptop    { border-top-color: #A78BFA; }
+
+  .goal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: .75rem;
+  }
+
+  .goal-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: #1a1a1a;
+  }
+
+  .goal-emoji {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+  }
+
+  .bg-blue   { background: #EEF2FF; }
+  .bg-orange { background: #FFF3E8; }
+  .bg-green  { background: #EAFAF1; }
+  .bg-purple { background: #F5F3FF; }
+
+  .goal-amounts {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: .5rem;
+  }
+
+  .goal-saved  { font-size: 20px; font-weight: 600; color: #1a1a1a; }
+  .goal-target { font-size: 12px; color: #888; }
+
+  .progress-bar {
+    height: 6px;
+    background: #f0ede8;
+    border-radius: 99px;
+    overflow: hidden;
+    margin-bottom: .5rem;
+  }
+
+  .progress-fill {
+    height: 100%;
+    border-radius: 99px;
+  }
+
+  .fill-blue   { background: #5B8DEF; }
+  .fill-orange { background: #F4A261; }
+  .fill-green  { background: #2ECC71; }
+  .fill-purple { background: #A78BFA; }
+
+  .goal-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .goal-pct      { font-size: 11px; font-weight: 700; color: #555; }
+  .goal-deadline { font-size: 11px; color: #bbb; }
+
+  /* ── Chart ── */
+  .chart-card {
+    background: #fff;
+    border: 1px solid rgba(0,0,0,0.08);
+    border-radius: 12px;
+    padding: 1rem;
+  }
+
+  .chart-bar-wrap {
+    display: flex;
+    align-items: flex-end;
+    gap: 8px;
+    height: 100px;
+    margin-top: .75rem;
+  }
+
+  .bar-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    flex: 1;
+  }
+
+  .bar {
+    width: 100%;
+    border-radius: 4px 4px 0 0;
+  }
+
+  .bar-light  { background: #c5d8f9; }
+  .bar-dark   { background: #1a1a2e; }
+
+  .bar-label {
+    font-size: 10px;
+    color: #aaa;
+    font-weight: 500;
+  }
+
+  .bar-label.current {
+    color: #1a1a2e;
+    font-weight: 700;
+  }
+
+  /* ── History ── */
+  .history-card {
+    background: #fff;
+    border: 1px solid rgba(0,0,0,0.08);
+    border-radius: 12px;
+    padding: 1rem;
+  }
+
+  .history-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+  }
+
+  .history-item:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .history-dot {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+
+  .history-info { flex: 1; }
+
+  .history-name {
+    font-size: 13px;
+    font-weight: 600;
+    color: #1a1a1a;
+  }
+
+  .history-date {
+    font-size: 11px;
+    color: #bbb;
+    margin-top: 2px;
+  }
+
+  .history-amount {
+    font-size: 14px;
+    font-weight: 700;
+    color: #2ECC71;
+  }
+</style>
+</head>
+<body>
+<div class="app">
+
+  <!-- Top bar -->
+  <div class="top-bar">
+    <h1>Savings tracker</h1>
+    <button class="btn-add">+ Add goal</button>
+  </div>
+
+  <!-- Summary -->
+  <div class="summary-grid">
+    <div class="metric">
+      <div class="metric-label">Total saved</div>
+      <div class="metric-value">$8,450</div>
+      <div class="metric-sub">across 4 goals</div>
+    </div>
+    <div class="metric">
+      <div class="metric-label">Monthly deposits</div>
+      <div class="metric-value">$1,200</div>
+      <div class="metric-sub">this month</div>
+    </div>
+    <div class="metric">
+      <div class="metric-label">Avg. progress</div>
+      <div class="metric-value">61%</div>
+      <div class="metric-sub">towards goals</div>
+    </div>
+  </div>
+
+  <!-- Goals -->
+  <div>
+    <div class="section-title">Your goals</div>
+    <div class="goals-grid">
+
+      <div class="goal-card house">
+        <div class="goal-header">
+          <div class="goal-name">House deposit</div>
+          <div class="goal-emoji bg-blue">🏠</div>
+        </div>
+        <div class="goal-amounts">
+          <span class="goal-saved">$4,200</span>
+          <span class="goal-target">of $20,000</span>
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill fill-blue" style="width: 21%"></div>
+        </div>
+        <div class="goal-footer">
+          <span class="goal-pct">21%</span>
+          <span class="goal-deadline">Dec 2026</span>
+        </div>
+      </div>
+
+      <div class="goal-card vacation">
+        <div class="goal-header">
+          <div class="goal-name">Vacation</div>
+          <div class="goal-emoji bg-orange">✈️</div>
+        </div>
+        <div class="goal-amounts">
+          <span class="goal-saved">$1,850</span>
+          <span class="goal-target">of $3,000</span>
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill fill-orange" style="width: 62%"></div>
+        </div>
+        <div class="goal-footer">
+          <span class="goal-pct">62%</span>
+          <span class="goal-deadline">Jul 2025</span>
+        </div>
+      </div>
+
+      <div class="goal-card emergency">
+        <div class="goal-header">
+          <div class="goal-name">Emergency fund</div>
+          <div class="goal-emoji bg-green">🛡️</div>
+        </div>
+        <div class="goal-amounts">
+          <span class="goal-saved">$1,900</span>
+          <span class="goal-target">of $2,000</span>
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill fill-green" style="width: 95%"></div>
+        </div>
+        <div class="goal-footer">
+          <span class="goal-pct">95%</span>
+          <span class="goal-deadline">Mar 2025</span>
+        </div>
+      </div>
+
+      <div class="goal-card laptop">
+        <div class="goal-header">
+          <div class="goal-name">New laptop</div>
+          <div class="goal-emoji bg-purple">💻</div>
+        </div>
+        <div class="goal-amounts">
+          <span class="goal-saved">$500</span>
+          <span class="goal-target">of $2,500</span>
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill fill-purple" style="width: 20%"></div>
+        </div>
+        <div class="goal-footer">
+          <span class="goal-pct">20%</span>
+          <span class="goal-deadline">Jun 2025</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Chart -->
+  <div>
+    <div class="section-title">Savings over time</div>
+    <div class="chart-card">
+      <div class="chart-bar-wrap">
+        <div class="bar-col">
+          <div class="bar bar-light" style="height: 32px"></div>
+          <div class="bar-label">Aug</div>
+        </div>
+        <div class="bar-col">
+          <div class="bar bar-light" style="height: 44px"></div>
+          <div class="bar-label">Sep</div>
+        </div>
+        <div class="bar-col">
+          <div class="bar bar-light" style="height: 38px"></div>
+          <div class="bar-label">Oct</div>
+        </div>
+        <div class="bar-col">
+          <div class="bar bar-light" style="height: 56px"></div>
+          <div class="bar-label">Nov</div>
+        </div>
+        <div class="bar-col">
+          <div class="bar bar-light" style="height: 50px"></div>
+          <div class="bar-label">Dec</div>
+        </div>
+        <div class="bar-col">
+          <div class="bar bar-light" style="height: 70px"></div>
+          <div class="bar-label">Jan</div>
+        </div>
+        <div class="bar-col">
+          <div class="bar bar-dark" style="height: 100px"></div>
+          <div class="bar-label current">Feb</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- History -->
+  <div>
+    <div class="section-title">Recent deposits</div>
+    <div class="history-card">
+
+      <div class="history-item">
+        <div class="history-dot bg-green">🛡️</div>
+        <div class="history-info">
+          <div class="history-name">Emergency fund</div>
+          <div class="history-date">Feb 14, 2025</div>
+        </div>
+        <div class="history-amount">+$300</div>
+      </div>
+
+      <div class="history-item">
+        <div class="history-dot bg-blue">🏠</div>
+        <div class="history-info">
+          <div class="history-name">House deposit</div>
+          <div class="history-date">Feb 12, 2025</div>
+        </div>
+        <div class="history-amount">+$500</div>
+      </div>
+
+      <div class="history-item">
+        <div class="history-dot bg-orange">✈️</div>
+        <div class="history-info">
+          <div class="history-name">Vacation</div>
+          <div class="history-date">Feb 10, 2025</div>
+        </div>
+        <div class="history-amount">+$250</div>
+      </div>
+
+      <div class="history-item">
+        <div class="history-dot bg-purple">💻</div>
+        <div class="history-info">
+          <div class="history-name">New laptop</div>
+          <div class="history-date">Feb 8, 2025</div>
+        </div>
+        <div class="history-amount">+$150</div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

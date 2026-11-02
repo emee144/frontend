@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background-color: white;
+        }
+        form {
+            display: flex;
+            background-color: white;
+            border-radius: 15px;
+            width: 40%;
+            box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.5);
+            flex-direction: column;
+            gap: 10px;
+            margin: 50px auto auto auto;
+            border: 1px solid aliceblue;
+            justify-content: center;
+            align-items: center;
+        }
+       form h2 {
+        color: black;
+        font-size: 1.5rem;
+        margin-top: 20px;
+        font-weight: 800;
+        text-align: center;
+
+       }
+       input{
+        width: 90%;
+        border-radius: 5px;
+       }
+       input::placeholder{
+        color: black;
+       }
+       input:focus{
+        outline: none;
+        border: 1px solid blue;
+       }
+       textarea {
+        width: 90%;
+        border-radius: 5px;
+       }
+    </style>
+</head>
+<body>
+    <form>
+        <h2>Contact Us</h2>
+        <input type="text" placeholder="Your name">
+        <textarea rows="5" placeholder="Your Message"></textarea>
+    </form>
+</body>
+</html>

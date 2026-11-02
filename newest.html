@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            display: flex;
+            background: black;
+            flex-direction: column;
+            height: 100vh;
+            width: 60%;
+            margin: auto;
+            padding-top: 20px;
+        }
+        .savings-header{
+            display: flex;
+            justify-content: space-between;
+        }
+        h1 {
+            color: white;
+            font-size: 2rem;
+        }
+        .savings-header button {
+            background: rgb(38, 38, 77);
+            border: none;
+            color: white;
+            padding: 2px;
+            border-radius: 6px;
+            width: 80px;
+        }
+        .savings-container {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .savings-card {
+            display: flex;
+            flex-direction: column;
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            width: 32%;
+        }
+        .goal-container {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .goal-card {
+            display: flex;
+            flex-direction: column;
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            width: 49%;
+        }
+        .goal-title {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+        .logo {
+            display: flex;
+            background: rgb(190, 190, 206);
+            padding: 2px;
+            justify-content: center;
+            border-radius: 6px;
+            width: 30px;
+        }
+        .goal-money{
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        .fill-container {
+            display: flex;
+            background: rgb(220, 220, 220);
+            height: 10px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+        .fill {
+            height: 100%;
+            background: rgb(85, 47, 161);
+            border-radius: 5px;
+        }
+        .goal-foot {
+            display: flex;
+            justify-content: space-between;
+        }
+        h2 {
+            color: white; 
+            font-size: 1.5rem; 
+            margin: 10px;
+        }
+        .bar {
+            display: flex;
+            gap: 10px;
+            background: white;
+            border-radius: 8px;
+            padding: 10px;
+        }
+        .bar-container{
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            margin-bottom: 40px;
+           
+        }
+        .bar-card {
+            display: flex;
+            flex-direction: column;
+            background: white;
+            
+            width: 60px;
+            height: 90%;
+        }
+        .bar-fill1{
+            background: rgb(128, 128, 207);
+            border-radius: 5px 5px 0 0;
+            margin-top: 40px;
+        }
+        .bar-fill2{
+            background: rgb(128, 128, 207);
+            border-radius: 5px 5px 0 0;
+            margin-top: 20px;
+        }
+        .bar-fill3{
+            background: rgb(128, 128, 207);
+            border-radius: 5px 5px 0 0;
+            margin-top: 30px;
+        }
+        .bar-fill4{
+            background: rgb(128, 128, 207);
+            border-radius: 5px 5px 0 0;
+            margin-top: 15px;
+        }
+        .bar-text {
+            display: flex;
+            justify-content: center;
+        }
+    </style>
+
+</head>
+<body>
+    <div class="savings-header">
+        <h1>Savings tracker</h1>
+        <button>+ Add goal</button>
+    </div>
+    <div class="savings-container">
+        <div class="savings-card">
+            <p>Total saved</p>
+            <h2 style="font-size: 2rem; font-weight: bolder;">$8,450</h2>
+            <p style="font-weight: 100; color: rgb(119, 14, 14);">across 4 goals</p>
+        </div>
+        <div class="savings-card">
+            <p>Monthly deposits</p>
+            <h2 style="font-size: 2rem; font-weight: bolder;">$1,200</h2>
+            <p style="font-weight: 100; color: rgb(119, 14, 14);">this month</p>
+        </div>
+        <div class="savings-card">
+            <p>Avg. progress</p>
+            <h2 style="font-size: 2rem; font-weight: bolder;">61%</h2>
+            <p style="font-weight: 100; color: rgb(119, 14, 14);">Saved: $2000</p>
+        </div>
+    </div>
+    <h2>Your goals</h2>
+    <div class="goal-container">
+        <div class="goal-card" style="box-shadow: 0 -3px yellow;">
+            <div class="goal-title">
+                <div>House deposit</div>
+                <div class="logo">🏠</div>
+            </div>
+            <div class="goal-money">
+                <div style="font-weight: bolder; font-size: larger;">$4,200</div>
+                <div>of $20,000</div>   
+            </div>
+            <div class="fill-container">
+                <div class="fill" style="width: 21%;"></div>
+            </div>
+            <div class="goal-foot">
+                <div>21%</div>
+                <div style="color: gray; font-weight: 100;">Dec 2026</div>
+            </div>
+        </div>
+        <div class="goal-card" style="box-shadow: 0 -3px rgb(160, 160, 11);">
+            <div class="goal-title">
+                <div>Vacation</div>
+                <div class="logo" style="background: rgb(216, 146, 146);">✈️</div>
+            </div>
+            <div class="goal-money">
+                <div style="font-weight: bolder; font-size: larger;">$1,850</div>
+                <div>of $3,000</div>    
+            </div>
+            <div class="fill-container">
+                <div class="fill" style="width: 62%; background: rgb(135, 187, 67);"></div>
+            </div>
+            <div class="goal-foot">
+                <div>62%</div>
+                <div style="color: gray; font-weight: 100;">July 2025</div>
+            </div>
+        </div>
+        <div class="goal-card" style="box-shadow: 0 -3px green;">
+           <div class="goal-title">
+               <div>Emergency fund</div>
+               <div class="logo">🛡️</div>
+            </div>
+            <div class="goal-money">
+                <div style="font-weight: bolder; font-size: larger;">$1,900</div>
+                <div>of $2,000</div>
+            </div>
+            <div class="fill-container">
+                <div class="fill" style="width: 95%; background: rgb(19, 122, 19);"></div>
+            </div>
+            <div class="goal-foot">
+                <div>95%</div>
+                <div style="color: gray; font-weight: 100;">Mar 2025</div>
+            </div>
+        </div>
+         <div class="goal-card" style="box-shadow: 0 -3px rgb(162, 92, 215);">
+            <div class="goal-title">
+                <div>New laptop</div>
+                <div class="logo">💻</div>
+            </div>
+            <div class="goal-money">
+                <div style="font-weight: bolder; font-size: larger;">$500</div>
+                <div>of $2,500</div>
+            </div>
+            <div class="fill-container">
+                <div class="fill" style="width: 20%; background: rgb(162, 92, 215);"></div>
+            </div>
+            <div class="goal-foot">
+                <div>20%</div>
+                <div style="color: gray; font-weight: 100;">Jun 2025</div>
+            </div>
+        </div>
+    </div>
+    <h2>Savings over time</h2>
+    <div class="bar">
+        <div class="bar-container">
+            <div class="bar-card">
+                <div class="bar-fill1" style="height: 40px;"></div> 
+            </div>
+            <div class="bar-text">Aug</div>
+        </div>
+        <div class="bar-container">
+            <div class="bar-card">
+                <div class="bar-fill2" style="height: 60px;"></div>
+            </div>
+            <div class="bar-text">Sep</div>
+        </div>
+        <div class="bar-container">
+            <div class="bar-card">
+                <div class="bar-fill3" style="height: 50px;"></div>
+            </div>
+            <div class="bar-text">Oct</div>
+        </div>
+        <div class="bar-container">
+            <div class="bar-card">
+                <div class="bar-fill4" style="height: 65px;"></div>
+            </div>
+            <div class="bar-text">Nov</div>
+        </div>
+    </div>
+</body>
+</html>

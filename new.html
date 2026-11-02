@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            background: black;
+            padding: 30px;
+            width: 85%;
+            margin: auto;
+        }
+        .savings-goal {
+            display: flex;
+            justify-content: space-between;
+        }
+        h1 {
+            color: white;
+            font-size: 2rem;
+        }
+        .savings-goal button {
+            background: rgb(68, 37, 37);
+            border: none;
+            color: white;
+            padding: 0.5rem 1rem;
+            font-size: 1rem;
+            cursor: pointer;
+            border-radius: 8px;
+            
+        }
+        .savings-container {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .savings-card {
+            display: flex;
+            flex-direction: column;
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            width: 32%;
+        }
+        .savings-card h2 {
+            font-size: 1.5rem;
+            margin: 10px 0;
+            color: black;
+        }
+        .savings-card p {
+            color: grey;
+        }
+        .goal-container {
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .goal-box {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            
+        }
+        .goal-card {
+            display: flex;
+            flex-direction: column;
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            width: 49%;
+            box-shadow: 0 -5px yellow;
+        }
+        .goal-title{
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: lightblue;
+            border-radius: 6px;
+            width: 40px;
+            padding: 2px;
+        }
+        .logo2 {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgb(235, 227, 227);
+            border-radius: 6px;
+            width: 40px;
+            padding: 2px;
+        }
+        .money {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        .fill-container {
+            height: 7px;
+            background: lightblue;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+        .fill {
+            height: 100%;
+            background: darkblue;
+            border-radius: 5px;
+        }
+        .fill2 {
+            height: 100%;
+            background: rgb(65, 218, 65);
+            border-radius: 5px;
+        }
+        .fill3 {
+            height: 100%;
+            background: rgb(218, 65, 65);
+            border-radius: 5px;
+        }
+        .goal-last {
+            display: flex;
+            justify-content: space-between;
+        }
+    </style>
+</head>
+<body>
+    <div class="savings-goal">
+        <h1>Savings Goal</h1>
+        <button><span style="font-size: 1rem;">+</span>Add Goal</button>
+    </div>
+    <div class="savings-container">
+        <div class="savings-card">
+            <p>Total saved</p>
+            <h2>$8,450</h2>
+            <p>across 4 goals</p>
+        </div>
+        <div class="savings-card">
+            <p>Monthly deposits</p>
+            <h2>$15,000</h2>
+            <p>this month</p>
+        </div>
+        <div class="savings-card">
+            <p>Avg. progress</p>
+            <h2>$5,000</h2>
+            <p>towards goals</p>
+        </div>
+    </div>
+    <div class="goal-container">
+        <h1>Your goals</h1>
+        <div class="goal-box">
+            <div class="goal-card">
+                <div class="goal-title">
+                    <div style="font-weight: bolder; font-size: larger;">House deposit</div>
+                    <div class="logo">🏠</div>
+                </div>
+                <div class="money">
+                    <div style="font-weight: bolder; font-size: larger;">$4,200</div>
+                    <div>of $20,000</div>
+                </div>
+                <div class="fill-container">
+                    <div class="fill" style="width: 21%;"></div>
+                </div>
+                <div class="goal-last">
+                    <div>21%</div>
+                    <div style="color: gray;">Dec 2026</div>
+                </div>
+            </div>
+            <div class="goal-card">
+                <div class="goal-title">
+                    <div style="font-weight: bolder; font-size: larger;">Vacation</div>
+                    <div class="logo2">✈️</div>
+                </div>
+                <div class="money">
+                    <div style="font-weight: bolder; font-size: larger;">$1,850</div>
+                    <div>of $3,000</div>
+                </div>
+                <div class="fill-container">
+                    <div class="fill2" style="width: 62%;"></div>
+                </div>
+                <div class="goal-last">
+                    <div>62%</div>
+                    <div style="color: gray;">July 2025</div>
+                </div>
+            </div>
+             <div class="goal-card">
+                <div class="goal-title">
+                    <div style="font-weight: bolder; font-size: larger;">Emergency fund</div>
+                    <div class="logo">🛡️</div>
+                </div>
+                <div class="money">
+                    <div style="font-weight: bolder; font-size: larger;">$1,900</div>
+                    <div>of $2,000</div>
+                </div>
+                <div class="fill-container">
+                    <div class="fill3" style="width: 95%;"></div>
+                </div>
+                <div class="goal-last">
+                    <div>95%</div>
+                    <div style="color: gray;">Dec 2026</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

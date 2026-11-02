@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            background: #fff;
+            display: flex;
+        }
+        .left-bar{
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 200px;
+            height: 100%;
+            background-color: #333136;
+        }
+        h1 {
+            color: white;
+            padding: 20px;
+        }
+        .left-bar a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            font-size: 18px;
+        }
+        .left-bar a:hover {
+            background-color: #e7816b;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            margin-left: 200px;
+            width: 85%;
+        }
+        h2 {
+            color: #333136;
+            padding: 20px;
+            margin-left: 10px;
+            font-size: 2rem;
+        }
+        .card-container {
+            display: flex;
+            gap: 20px;
+            width: 100%;
+            justify-content: space-around;
+            margin: auto auto auto 20px;
+        }
+        .card-container .card {
+            background-color: #f0f0f0;
+            padding: 10px;
+            border-radius: 10px;
+            width: 440px;
+            height: 120px;
+        }
+         .card-container .card .title {
+            color: white;
+            font-size: 1rem;
+            margin-bottom: 5px;
+        }
+         .card-container .card p {
+            color: white;
+            font-size: 2rem;
+            margin-bottom: 10px;
+         }
+         .container-four {
+            display: flex;
+            width: 100%;
+            gap: 20px;
+            height: 700px;
+            margin-top: 30px;
+            margin-left: 22px;
+
+         }
+         .child-container1 {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            width: 66%;
+            margin-left: 20px;
+         }
+         .child-container2 {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            width: 32%;
+         }
+         .card1 {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            width: 98%;
+            height: 60%;
+            border-radius: 15px;
+            background: aliceblue;
+            border: 1px solid aliceblue;
+            color: white;
+         }
+         .card2 {
+            display: flex;
+            flex-direction: column;
+            width: 98%;
+            height: 40%;
+            border-radius: 15px;
+            background: aliceblue;
+            border: 1px solid aliceblue;
+            color: white;
+         }
+         .card3 {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            height: 49%;
+            border-radius: 15px;
+            background: aliceblue;
+            border: 1px solid aliceblue;
+            color: white;
+         }
+         .card1-title {
+            display: flex;
+            margin: 10px 20px 10px 10px;
+         }
+         .card1-title-child { 
+            color: black;
+         }
+         .card1-content {
+            display: flex;
+            margin: 10px 20px 10px 10px;
+            padding-bottom: 10px;
+            border-bottom: 0.5px solid grey;
+         }
+         .card1-content-left {
+            display: flex;
+            gap: 20px;
+         }
+         .card1-content-right{
+            margin-left: auto;
+            color: black;
+         }
+         .sf {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            background: greenyellow;
+            color: white;
+         }
+         @media screen and (max-width: 768px) {
+            .left-bar {
+                width: 100%;
+                height: auto;
+                position: relative;
+            }
+            .container {
+                margin-left: 0;
+                width: 100%;
+            }
+            .card-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            .container-four {
+                flex-direction: column;
+                align-items: center;
+            }   
+            
+         }
+        </style>
+</head>
+<body>
+    <div class="left-bar">
+        <h1>finance.</h1>
+        <a href="#">Overview</a>
+        <a href="#">Transactions</a>
+        <a href="#">Budgets</a>    
+        <a href="#">Pots</a>
+        <a href="#">Recurring bills</a>
+    </div>  
+    <div class="container">
+        <h2>Overview</h2>
+        <div class="card-container">
+            <div class="card" style="background: black;">
+                <div class="title" style="color: rgb(157, 124, 157);">Current Balance</div>
+                <p>$4,836.00</p>
+            </div>
+            <div class="card" style="background: rgb(75, 209, 75);">
+                <div class="title" style="color: aliceblue;">Income</div>
+                <p>$3,814.25</p>
+            </div>
+            <div class="card">
+                <div class="title" style="color: rgb(11, 115, 206);">Expenses</div>
+                <p style="color: black;">$1,700.50</p>
+            </div>
+        </div>
+        <div class="container-four">
+            <div class="child-container1">
+                <div class="card1">
+                    <div class="card1-title">
+                        <div class="card1-title-child">Recent Transactions</div>
+                        <div class="card1-title-child" style="margin-left: auto;">View all →</div>
+                    </div>
+                    <div class="card1-content">
+                        <div class="card1-content-left">
+                            <div class="sf">SF</div>
+                            <div style="color: black;">Salary Deposit<br> <span style="font-size: 200; color: black;">Income</span></div>
+                        </div>
+                        <div class="card1-content-right">+$3,500.00<br><span style="font-size: smaller;">May 15, 2025</span>
+                        </div>
+                    </div>
+            <div class="child-container2">
+                <div class="card3">hi</div>
+                <div class="card3">hi</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
